@@ -1,24 +1,49 @@
-# README
+API caso técnico Printer Brasil
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+versão ruby `3.0.2`
+versão rails `6.1.7.6`
 
-Things you may want to cover:
+## Instalação
+- `git clone git@github.com/CaioBal/rails-api-with-auth.git`
+- cd rails-api-auth
+- bundle install
 
-* Ruby version
+Caso não funcione direto, utilizar o comando `rails db:seed`
 
-* System dependencies
+## Banco de Dados
+Para fins práticos, foi usado a sqlite3. (DB do bundle de instalação do Rails)
 
-* Configuration
+## CORS
+CORS está liberado para todas origens de acesso
 
-* Database creation
+## Como usar
 
-* Database initialization
+É necessário fazer uma request de `POST` em `auth/sign_in` com um dos usuários já inseridos na API para conseguir o token de autorização presente no Header da response.
+- `body:
+{
+email: user@user.com
+senha: password
+} `
+- `body:
+{
+email: user1@user.com
+senha: password
+}`
 
-* How to run the test suite
+Com o token, adicione-o no header de cada request. Ele tem um tempo de expiração curto, caso necessário, gere outro token.
 
-* Services (job queues, cache servers, search engines, etc.)
+## Requests
 
-* Deployment instructions
+A API possui um request básicos de um CRUD, portanto:
 
-* ...
+- `GET: /api/v1/items`
+- `GET: /api/v1/items/{id}`
+- `DELETE: /api/v1/items/{id}`
+
+Para os requests de criação, são esperados os campos:
+- `body:{
+"name": string
+"description": string
+}`
+- `POST: /api/v1/items`
+- `PUT: /api/v1/items/{id}`
